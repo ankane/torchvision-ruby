@@ -12,7 +12,6 @@ module TorchVision
         end
 
         if has_separate_transform
-          raise Torch::NotImplementedYet
           # transforms = StandardTransform.new(transform, target_transform)
         end
         @transforms = transforms
@@ -57,7 +56,7 @@ module TorchVision
       end
 
       def check_integrity(path, sha256)
-        Digest::SHA256.file(path).hexdigest == sha256
+        File.exist?(path) && Digest::SHA256.file(path).hexdigest == sha256
       end
     end
   end
