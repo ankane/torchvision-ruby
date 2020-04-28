@@ -37,14 +37,16 @@ module TorchVision
       end
 
       def size
-        @data.size[0]
+        @data.size(0)
       end
 
       def [](index)
-        img = @data[index]
+        img, target = @data[index], @targets[index].item
+
+        # TODO convert to image
         img = @transform.call(img) if @transform
 
-        target = @targets[index].item
+        target = @target_transform.call(target) if @target_transform
 
         [img, target]
       end

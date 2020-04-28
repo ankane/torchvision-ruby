@@ -1,3 +1,7 @@
+## 0.1.2 (unreleased)
+
+- Added CIFAR10 dataset
+
 ## 0.1.1 (2020-04-28)
 
 - Removed `mini_magick` for performance

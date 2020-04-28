@@ -28,8 +28,6 @@ module TorchVision
 
         temp_path = "#{Dir.tmpdir}/#{Time.now.to_f}" # TODO better name
 
-        digest = Digest::SHA256.new
-
         uri = URI(url)
 
         # Net::HTTP automatically adds Accept-Encoding for compression
@@ -44,19 +42,22 @@ module TorchVision
             http.request(request) do |response|
               response.read_body do |chunk|
                 f.write(chunk)
-                digest.update(chunk)
               end
             end
           end
         end
 
-        if digest.hexdigest != sha256
-          raise Error, "Bad hash: #{digest.hexdigest}"
+        unless check_integrity(temp_path, sha256)
+          raise Error, "Bad hash"
         end
 
         FileUtils.mv(temp_path, dest)
 
         dest
+      end
+
+      def check_integrity(path, sha256)
+        Digest::SHA256.file(path).hexdigest == sha256
       end
     end
   end

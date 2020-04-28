@@ -14,10 +14,10 @@ class DatasetsTest < Minitest::Test
   end
 
   def test_cifar10
-    skip "Not implemented yet"
-
     trainset = TorchVision::Datasets::CIFAR10.new(root, train: true, download: true)
     assert_equal 50000, trainset.size
+    # assert_equal [3, 32, 32], trainset[0][0].shape
+    assert_equal 6, trainset[0][1]
 
     testset = TorchVision::Datasets::CIFAR10.new(root, train: false, download: true)
     assert_equal 10000, testset.size
