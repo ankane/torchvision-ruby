@@ -6,6 +6,7 @@ require "torch"
 require "digest"
 require "fileutils"
 require "net/http"
+require "tmpdir"
 
 # modules
 require "torchvision/version"
