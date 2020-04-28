@@ -22,18 +22,35 @@ module TorchVision
           if std.to_a.any? { |v| v == 0 }
             raise ArgumentError, "std evaluated to zero after conversion to #{dtype}, leading to division by zero."
           end
-          # if mean.ndim == 1
-          #   raise Torch::NotImplementedYet
-          # end
-          # if std.ndim == 1
-          #   raise Torch::NotImplementedYet
-          # end
+          if mean.ndim == 1
+            mean = mean[0...mean.size(0), nil, nil]
+          end
+          if std.ndim == 1
+            std = std[0...std.size(0), nil, nil]
+          end
           tensor.sub!(mean).div!(std)
           tensor
         end
 
         # TODO improve
         def to_tensor(pic)
+          if !pic.is_a?(Numo::NArray) || pic.is_a?(Torch::Tensor)
+            raise ArgumentError, "pic should be tensor or Numo::NArray. Got #{pic.class.name}"
+          end
+
+          if pic.is_a?(Numo::NArray) && ![2, 3].include?(pic.ndim)
+            raise ArgumentError, "pic should be 2/3 dimensional. Got #{pic.dim} dimensions."
+          end
+
+          if pic.is_a?(Numo::NArray)
+            if pic.ndim == 2
+              raise Torch::NotImplementedYet
+            end
+
+            img = Torch.from_numo(pic.transpose(2, 0, 1))
+            return img.float.div(255)
+          end
+
           pic = pic.float
           pic.unsqueeze!(0).div!(255)
         end
