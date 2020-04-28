@@ -1,6 +1,6 @@
 module TorchVision
   module Datasets
-    class MNIST
+    class MNIST < VisionDataset
       RESOURCES = [
         {
           url: "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
@@ -22,10 +22,9 @@ module TorchVision
       TRAINING_FILE = "training.pt"
       TEST_FILE = "test.pt"
 
-      def initialize(root, train: true, download: false, transform: nil)
-        @root = root
+      def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
+        super(root, transform: transform, target_transform: target_transform)
         @train = train
-        @transform = transform
 
         self.download if download
 
