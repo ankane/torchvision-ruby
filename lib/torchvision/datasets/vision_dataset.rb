@@ -11,6 +11,9 @@ module TorchVision
           raise ArgumentError, "Only transforms or transform/target_transform can be passed as argument"
         end
 
+        @transform = transform
+        @target_transform = target_transform
+
         if has_separate_transform
           # transforms = StandardTransform.new(transform, target_transform)
         end
