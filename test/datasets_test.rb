@@ -16,7 +16,10 @@ class DatasetsTest < Minitest::Test
   def test_cifar10
     trainset = TorchVision::Datasets::CIFAR10.new(root, train: true, download: true)
     assert_equal 50000, trainset.size
-    # assert_equal [3, 32, 32], trainset[0][0].shape
+    # just test data for now
+    data = trainset.instance_variable_get("@data")
+    assert_equal [50000, 32, 32, 3], data.shape
+    assert_equal [59, 62, 63], data[0..2].to_a
     assert_equal 6, trainset[0][1]
 
     testset = TorchVision::Datasets::CIFAR10.new(root, train: false, download: true)
