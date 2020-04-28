@@ -1,5 +1,4 @@
 # dependencies
-require "mini_magick"
 require "numo/narray"
 require "torch"
 

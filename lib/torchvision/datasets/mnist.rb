@@ -43,7 +43,6 @@ module TorchVision
 
       def [](index)
         img = @data[index]
-        img = MiniMagick::Image.import_pixels(img.numo.to_binary, img.size(0), img.size(1), 8, "gray")
         img = @transform.call(img) if @transform
 
         target = @targets[index].item

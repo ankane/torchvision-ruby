@@ -33,10 +33,9 @@ module TorchVision
         end
 
         # TODO improve
-        # TODO make more performant
         def to_tensor(pic)
-          pixels = pic.get_pixels.flat_map { |r| r.map(&:first) }
-          Torch.tensor(pixels, dtype: :float).div(255).reshape(1, pic.width, pic.height)
+          pic = pic.float
+          pic.unsqueeze!(0).div!(255)
         end
       end
     end
