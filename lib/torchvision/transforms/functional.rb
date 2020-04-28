@@ -34,7 +34,7 @@ module TorchVision
 
         # TODO improve
         def to_tensor(pic)
-          if !pic.is_a?(Numo::NArray) || pic.is_a?(Torch::Tensor)
+          if !pic.is_a?(Numo::NArray) && !pic.is_a?(Torch::Tensor)
             raise ArgumentError, "pic should be tensor or Numo::NArray. Got #{pic.class.name}"
           end
 
