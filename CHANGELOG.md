@@ -1,4 +1,4 @@
-## 0.1.1 (unreleased)
+## 0.1.1 (2020-04-28)
 
 - Removed `mini_magick` for performance
 
