@@ -100,45 +100,6 @@ module TorchVision
           Torch.tensor(Numo::UInt8.from_string(gz.read, shape))
         end
       end
-
-      def download_file(url, download_root:, filename:, sha256:)
-        FileUtils.mkdir_p(download_root)
-
-        dest = File.join(download_root, filename)
-        return dest if File.exist?(dest)
-
-        temp_path = "#{Dir.tmpdir}/#{Time.now.to_f}" # TODO better name
-
-        digest = Digest::SHA256.new
-
-        uri = URI(url)
-
-        # Net::HTTP automatically adds Accept-Encoding for compression
-        # of response bodies and automatically decompresses gzip
-        # and deflateresponses unless a Range header was sent.
-        # https://ruby-doc.org/stdlib-2.6.4/libdoc/net/http/rdoc/Net/HTTP.html
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
-          request = Net::HTTP::Get.new(uri)
-
-          puts "Downloading #{url}..."
-          File.open(temp_path, "wb") do |f|
-            http.request(request) do |response|
-              response.read_body do |chunk|
-                f.write(chunk)
-                digest.update(chunk)
-              end
-            end
-          end
-        end
-
-        if digest.hexdigest != sha256
-          raise Error, "Bad hash: #{digest.hexdigest}"
-        end
-
-        FileUtils.mv(temp_path, dest)
-
-        dest
-      end
     end
   end
 end
