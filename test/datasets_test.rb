@@ -31,6 +31,21 @@ class DatasetsTest < Minitest::Test
     assert_equal 9, testset[0][1]
   end
 
+  def test_kmnist
+    trainset = TorchVision::Datasets::KMNIST.new(root, train: true, download: true)
+    assert_equal 60000, trainset.size
+    assert_kind_of Torch::Tensor, trainset[0][0]
+    assert_equal 8, trainset[0][1]
+
+    data = trainset.instance_variable_get("@data")
+    assert_equal [60000, 28, 28], data.shape
+
+    testset = TorchVision::Datasets::KMNIST.new(root, train: false, download: true)
+    assert_equal 10000, testset.size
+    assert_kind_of Torch::Tensor, testset[0][0]
+    assert_equal 2, testset[0][1]
+  end
+
   def test_cifar10
     trainset = TorchVision::Datasets::CIFAR10.new(root, train: true, download: true)
     assert_equal 50000, trainset.size

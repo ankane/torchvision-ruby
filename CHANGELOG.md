@@ -1,6 +1,6 @@
 ## 0.1.2 (unreleased)
 
-- Added CIFAR10 dataset
+- Added CIFAR10, FashionMNIST, and KMNIST datasets
 
 ## 0.1.1 (2020-04-28)
 

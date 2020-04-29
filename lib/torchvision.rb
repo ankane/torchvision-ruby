@@ -17,6 +17,7 @@ require "torchvision/datasets/vision_dataset"
 require "torchvision/datasets/cifar10"
 require "torchvision/datasets/mnist"
 require "torchvision/datasets/fashion_mnist"
+require "torchvision/datasets/kmnist"
 
 # transforms
 require "torchvision/transforms/compose"

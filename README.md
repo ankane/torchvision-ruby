@@ -28,9 +28,10 @@ TorchVision::Datasets::MNIST.new("./data", train: true, download: true)
 
 Supported datasets are:
 
-- `CIFAR10`
-- `FashionMNIST`
-- `MNIST`
+- CIFAR10
+- FashionMNIST
+- KMNIST
+- MNIST
 
 ## Disclaimer
 
