@@ -34,6 +34,15 @@ Supported datasets are:
 - KMNIST
 - MNIST
 
+## Transforms
+
+```ruby
+TorchVision::Transforms::Compose.new([
+  TorchVision::Transforms::ToTensor.new,
+  TorchVision::Transforms::Normalize.new([0.1307], [0.3081])
+])
+```
+
 ## Disclaimer
 
 This library downloads and prepares public datasets. We don’t host any datasets. Be sure to adhere to the license for each dataset.
