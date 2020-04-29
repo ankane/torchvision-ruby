@@ -43,6 +43,10 @@ TorchVision::Transforms::Compose.new([
 ])
 ```
 
+## Models
+
+todo
+
 ## Disclaimer
 
 This library downloads and prepares public datasets. We don’t host any datasets. Be sure to adhere to the license for each dataset.
