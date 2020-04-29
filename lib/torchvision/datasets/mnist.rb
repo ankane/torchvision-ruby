@@ -1,9 +1,6 @@
 module TorchVision
   module Datasets
     class MNIST < VisionDataset
-      TRAINING_FILE = "training.pt"
-      TEST_FILE = "test.pt"
-
       def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
         super(root, transform: transform, target_transform: target_transform)
         @train = train
@@ -14,7 +11,7 @@ module TorchVision
           raise Error, "Dataset not found. You can use download: true to download it"
         end
 
-        data_file = @train ? TRAINING_FILE : TEST_FILE
+        data_file = @train ? training_file : test_file
         @data, @targets = Torch.load(File.join(processed_folder, data_file))
       end
 
@@ -42,8 +39,8 @@ module TorchVision
       end
 
       def check_exists
-        File.exist?(File.join(processed_folder, TRAINING_FILE)) &&
-          File.exist?(File.join(processed_folder, TEST_FILE))
+        File.exist?(File.join(processed_folder, training_file)) &&
+          File.exist?(File.join(processed_folder, test_file))
       end
 
       def download
@@ -68,8 +65,8 @@ module TorchVision
           unpack_mnist("t10k-labels-idx1-ubyte", 8, [10000])
         ]
 
-        Torch.save(training_set, File.join(processed_folder, TRAINING_FILE))
-        Torch.save(test_set, File.join(processed_folder, TEST_FILE))
+        Torch.save(training_set, File.join(processed_folder, training_file))
+        Torch.save(test_set, File.join(processed_folder, test_file))
 
         puts "Done!"
       end
@@ -95,6 +92,14 @@ module TorchVision
             sha256: "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6"
           }
         ]
+      end
+
+      def training_file
+        "training.pt"
+      end
+
+      def test_file
+        "test.pt"
       end
 
       def unpack_mnist(path, offset, shape)

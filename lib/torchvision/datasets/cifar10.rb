@@ -1,21 +1,6 @@
 module TorchVision
   module Datasets
     class CIFAR10 < VisionDataset
-      BASE_FOLDER = "cifar-10-batches-bin"
-      URL = "https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz"
-      FILENAME = "cifar-10-binary.tar.gz"
-      SHA256 = "c4a38c50a1bc5f3a1c5537f2155ab9d68f9f25eb1ed8d9ddda3db29a59bca1dd"
-      TRAIN_LIST = [
-        {filename: "data_batch_1.bin", sha256: "cee916563c9f80d84e3cc88e17fdc0941787f1244f00a67874d45b261883ada5"},
-        {filename: "data_batch_2.bin", sha256: "a591ca11fa1708a91ee40f54b3da4784ccd871ecf2137de63f51ada8b3fa57ed"},
-        {filename: "data_batch_3.bin", sha256: "bbe8596564c0f86427f876058170b84dac6670ddf06d79402899d93ceea26f67"},
-        {filename: "data_batch_4.bin", sha256: "014e562d6e23c72197cc727519169a60359f5eccd8945ad5a09d710285ff4e48"},
-        {filename: "data_batch_5.bin", sha256: "755304fc0b379caeae8c14f0dac912fbc7d6cd469eb67a1029a08a39453a9add"},
-      ]
-      TEST_LIST = [
-        {filename: "test_batch.bin", sha256: "8e2eb146ae340b09e24670f29cabc6326dba54da8789dab6768acf480273f65b"}
-      ]
-
       def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
         super(root, transform: transform, target_transform: target_transform)
         @train = train
@@ -26,14 +11,14 @@ module TorchVision
           raise Error, "Dataset not found or corrupted. You can use download=True to download it"
         end
 
-        downloaded_list = @train ? TRAIN_LIST : TEST_LIST
+        downloaded_list = @train ? train_list : test_list
 
         @data = String.new
         @targets = String.new
 
         i = 0
         downloaded_list.each do |file|
-          file_path = File.join(@root, BASE_FOLDER, file[:filename])
+          file_path = File.join(@root, base_folder, file[:filename])
           File.open(file_path, "rb") do |f|
             while !f.eof?
               @targets << f.read(1)
@@ -67,8 +52,8 @@ module TorchVision
 
       def _check_integrity
         root = @root
-        (TRAIN_LIST + TEST_LIST).each do |fentry|
-          fpath = File.join(root, BASE_FOLDER, fentry[:filename])
+        (train_list + test_list).each do |fentry|
+          fpath = File.join(root, base_folder, fentry[:filename])
           return false unless check_integrity(fpath, fentry[:sha256])
         end
         true
@@ -80,12 +65,46 @@ module TorchVision
           return
         end
 
-        download_file(URL, download_root: @root, filename: FILENAME, sha256: SHA256)
+        download_file(url, download_root: @root, filename: filename, sha256: tgz_sha256)
 
-        path = File.join(@root, FILENAME)
+        path = File.join(@root, filename)
         File.open(path, "rb") do |io|
           Gem::Package.new("").extract_tar_gz(io, @root)
         end
+      end
+
+      private
+
+      def base_folder
+        "cifar-10-batches-bin"
+      end
+
+      def url
+        "https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz"
+      end
+
+      def filename
+        "cifar-10-binary.tar.gz"
+      end
+
+      def tgz_sha256
+        "c4a38c50a1bc5f3a1c5537f2155ab9d68f9f25eb1ed8d9ddda3db29a59bca1dd"
+      end
+
+      def train_list
+        [
+          {filename: "data_batch_1.bin", sha256: "cee916563c9f80d84e3cc88e17fdc0941787f1244f00a67874d45b261883ada5"},
+          {filename: "data_batch_2.bin", sha256: "a591ca11fa1708a91ee40f54b3da4784ccd871ecf2137de63f51ada8b3fa57ed"},
+          {filename: "data_batch_3.bin", sha256: "bbe8596564c0f86427f876058170b84dac6670ddf06d79402899d93ceea26f67"},
+          {filename: "data_batch_4.bin", sha256: "014e562d6e23c72197cc727519169a60359f5eccd8945ad5a09d710285ff4e48"},
+          {filename: "data_batch_5.bin", sha256: "755304fc0b379caeae8c14f0dac912fbc7d6cd469eb67a1029a08a39453a9add"},
+        ]
+      end
+
+      def test_list
+        [
+          {filename: "test_batch.bin", sha256: "8e2eb146ae340b09e24670f29cabc6326dba54da8789dab6768acf480273f65b"}
+        ]
       end
     end
   end

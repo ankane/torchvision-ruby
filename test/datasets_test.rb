@@ -57,6 +57,20 @@ class DatasetsTest < Minitest::Test
 
     testset = TorchVision::Datasets::CIFAR10.new(root, train: false, download: true)
     assert_equal 10000, testset.size
+    assert_equal 3, testset[0][1]
+  end
+
+  def test_cifar100
+    trainset = TorchVision::Datasets::CIFAR100.new(root, train: true, download: true)
+    assert_equal 50000, trainset.size
+    assert_equal 19, trainset[0][1]
+
+    data = trainset.instance_variable_get("@data")
+    assert_equal [50000, 32, 32, 3], data.shape
+
+    testset = TorchVision::Datasets::CIFAR10.new(root, train: false, download: true)
+    assert_equal 10000, testset.size
+    assert_equal 49, testset[0][1]
   end
 
   def test_missing

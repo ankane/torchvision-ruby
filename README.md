@@ -29,6 +29,7 @@ TorchVision::Datasets::MNIST.new("./data", train: true, download: true)
 Supported datasets are:
 
 - CIFAR10
+- CIFAR100
 - FashionMNIST
 - KMNIST
 - MNIST
