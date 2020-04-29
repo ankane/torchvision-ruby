@@ -14,7 +14,7 @@ module TorchVision
         @conv1 = Torch::NN::Conv2d.new(inplanes, planes, 3, stride: stride, padding: 1, groups: 1, bias: false, dilation: 1)
         @bn1 = norm_layer.new(planes)
         @relu = Torch::NN::ReLU.new(inplace: true)
-        @conv1 = Torch::NN::Conv2d.new(planes, planes, 3, stride: 1, padding: 1, groups: 1, bias: false, dilation: 1)
+        @conv2 = Torch::NN::Conv2d.new(planes, planes, 3, stride: 1, padding: 1, groups: 1, bias: false, dilation: 1)
         @bn2 = norm_layer.new(planes)
         @downsample = downsample
         @stride = stride
