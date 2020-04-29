@@ -32,8 +32,4 @@ class DatasetsTest < Minitest::Test
     end
     assert_equal "Dataset not found. You can use download: true to download it", error.message
   end
-
-  def root
-    @root ||= Dir.tmpdir
-  end
 end
