@@ -18,21 +18,20 @@ module TorchVision
         @data = String.new
         @targets = String.new
 
-        i = 0
         downloaded_list.each do |file|
           file_path = File.join(@root, base_folder, file[:filename])
           File.open(file_path, "rb") do |f|
             while !f.eof?
+              f.read(1) if multiple_labels?
               @targets << f.read(1)
               @data << f.read(3072)
-              i += 1
             end
           end
         end
 
         @targets = @targets.unpack("C*")
         # TODO switch i to -1 when Numo supports it
-        @data = Numo::UInt8.from_binary(@data).reshape(i, 3, 32, 32)
+        @data = Numo::UInt8.from_binary(@data).reshape(@targets.size, 3, 32, 32)
         @data = @data.transpose(0, 2, 3, 1)
       end
 
@@ -107,6 +106,10 @@ module TorchVision
         [
           {filename: "test_batch.bin", sha256: "8e2eb146ae340b09e24670f29cabc6326dba54da8789dab6768acf480273f65b"}
         ]
+      end
+
+      def multiple_labels?
+        false
       end
     end
   end

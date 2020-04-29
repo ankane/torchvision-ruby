@@ -32,6 +32,10 @@ module TorchVision
           {filename: "test.bin", sha256: "d8b1e6b7b3bee4020055f0699b111f60b1af1e262aeb93a0b659061746f8224a"}
         ]
       end
+
+      def multiple_labels?
+        true
+      end
     end
   end
 end
