@@ -1,6 +1,8 @@
 module TorchVision
   module Datasets
     class CIFAR10 < VisionDataset
+      # https://www.cs.toronto.edu/~kriz/cifar.html
+
       def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
         super(root, transform: transform, target_transform: target_transform)
         @train = train

@@ -1,6 +1,8 @@
 module TorchVision
   module Datasets
     class KMNIST < MNIST
+      # https://github.com/rois-codh/kmnist
+
       private
 
       def resources

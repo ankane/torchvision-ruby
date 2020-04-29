@@ -1,6 +1,8 @@
 module TorchVision
   module Datasets
     class CIFAR100 < CIFAR10
+      # https://www.cs.toronto.edu/~kriz/cifar.html
+
       private
 
       def base_folder

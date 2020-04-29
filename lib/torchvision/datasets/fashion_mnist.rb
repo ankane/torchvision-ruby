@@ -1,6 +1,8 @@
 module TorchVision
   module Datasets
     class FashionMNIST < MNIST
+      # https://github.com/zalandoresearch/fashion-mnist
+
       private
 
       def resources
