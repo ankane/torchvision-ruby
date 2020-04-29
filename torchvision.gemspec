@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.4"
 
   spec.add_dependency "numo-narray"
-  spec.add_dependency "torch-rb", ">= 0.2.3"
+  spec.add_dependency "torch-rb", ">= 0.2.4"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
