@@ -45,7 +45,9 @@ TorchVision::Transforms::Compose.new([
 
 ## Models
 
-todo
+```ruby
+TorchVision::Models::Resnet18.new
+```
 
 ## Disclaimer
 

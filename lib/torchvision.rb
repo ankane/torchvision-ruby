@@ -20,6 +20,12 @@ require "torchvision/datasets/mnist"
 require "torchvision/datasets/fashion_mnist"
 require "torchvision/datasets/kmnist"
 
+# models
+require "torchvision/models/basic_block"
+require "torchvision/models/bottleneck"
+require "torchvision/models/resnet"
+require "torchvision/models/resnet18"
+
 # transforms
 require "torchvision/transforms/compose"
 require "torchvision/transforms/functional"
