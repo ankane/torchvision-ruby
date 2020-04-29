@@ -5,6 +5,6 @@ require "minitest/pride"
 
 class Minitest::Test
   def root
-    @root ||= Dir.tmpdir
+    @root ||= ENV["CI"] ? "#{ENV["HOME"]}/data" : Dir.tmpdir
   end
 end

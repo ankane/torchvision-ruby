@@ -9,6 +9,7 @@ cache:
   bundler: true
   directories:
     - $HOME/libtorch
+    - $HOME/data
 script: bundle exec rake test
 notifications:
   email:
