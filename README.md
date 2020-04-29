@@ -20,12 +20,17 @@ This library follows the [Python API](https://pytorch.org/docs/master/torchvisio
 
 ## Datasets
 
-MNIST dataset
+Load a dataset
 
 ```ruby
-trainset = TorchVision::Datasets::MNIST.new("./data", train: true, download: true)
-trainset.size
+TorchVision::Datasets::MNIST.new("./data", train: true, download: true)
 ```
+
+Supported datasets are:
+
+- `CIFAR10`
+- `FashionMNIST`
+- `MNIST`
 
 ## Disclaimer
 

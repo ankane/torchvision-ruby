@@ -1,24 +1,6 @@
 module TorchVision
   module Datasets
     class MNIST < VisionDataset
-      RESOURCES = [
-        {
-          url: "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
-          sha256: "440fcabf73cc546fa21475e81ea370265605f56be210a4024d2ca8f203523609"
-        },
-        {
-          url: "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz",
-          sha256: "3552534a0a558bbed6aed32b30c495cca23d567ec52cac8be1a0730e8010255c"
-        },
-        {
-          url: "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
-          sha256: "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6"
-        },
-        {
-          url: "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",
-          sha256: "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6"
-        }
-      ]
       TRAINING_FILE = "training.pt"
       TEST_FILE = "test.pt"
 
@@ -52,11 +34,11 @@ module TorchVision
       end
 
       def raw_folder
-        File.join(@root, "MNIST", "raw")
+        File.join(@root, self.class.name.split("::").last, "raw")
       end
 
       def processed_folder
-        File.join(@root, "MNIST", "processed")
+        File.join(@root, self.class.name.split("::").last, "processed")
       end
 
       def check_exists
@@ -70,7 +52,7 @@ module TorchVision
         FileUtils.mkdir_p(raw_folder)
         FileUtils.mkdir_p(processed_folder)
 
-        RESOURCES.each do |resource|
+        resources.each do |resource|
           filename = resource[:url].split("/").last
           download_file(resource[:url], download_root: raw_folder, filename: filename, sha256: resource[:sha256])
         end
@@ -93,6 +75,27 @@ module TorchVision
       end
 
       private
+
+      def resources
+        [
+          {
+            url: "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
+            sha256: "440fcabf73cc546fa21475e81ea370265605f56be210a4024d2ca8f203523609"
+          },
+          {
+            url: "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz",
+            sha256: "3552534a0a558bbed6aed32b30c495cca23d567ec52cac8be1a0730e8010255c"
+          },
+          {
+            url: "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
+            sha256: "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6"
+          },
+          {
+            url: "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",
+            sha256: "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6"
+          }
+        ]
+      end
 
       def unpack_mnist(path, offset, shape)
         path = File.join(raw_folder, "#{path}.gz")
