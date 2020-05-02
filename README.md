@@ -46,7 +46,7 @@ TorchVision::Transforms::Compose.new([
 ## Models
 
 ```ruby
-TorchVision::Models::Resnet18.new
+TorchVision::Models::ResNet18.new
 ```
 
 Supported models are:
