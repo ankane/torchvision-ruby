@@ -49,6 +49,11 @@ TorchVision::Transforms::Compose.new([
 TorchVision::Models::Resnet18.new
 ```
 
+Supported models are:
+
+- ResNet18
+- ResNet34 [master]
+
 ## Disclaimer
 
 This library downloads and prepares public datasets. We don’t host any datasets. Be sure to adhere to the license for each dataset.
