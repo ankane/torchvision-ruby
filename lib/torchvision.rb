@@ -25,6 +25,7 @@ require "torchvision/models/basic_block"
 require "torchvision/models/bottleneck"
 require "torchvision/models/resnet"
 require "torchvision/models/resnet18"
+require "torchvision/models/resnet34"
 
 # transforms
 require "torchvision/transforms/compose"
