@@ -4,7 +4,6 @@ class ModelsTest < Minitest::Test
   def test_alexnet
     net = TorchVision::Models::AlexNet.new
     assert_equal 24, net.modules.size
-    # TODO uncommented when torch-rb >= 0.2.6 released
     # assert_equal 16, net.parameters.size
   end
 
@@ -30,7 +29,24 @@ class ModelsTest < Minitest::Test
   def test_vgg11
     net = TorchVision::Models::VGG11.new
     assert_equal 32, net.modules.size
-    # TODO uncommented when torch-rb >= 0.2.6 released
     # assert_equal 22, net.parameters.size
+  end
+
+  def test_vgg13
+    net = TorchVision::Models::VGG13.new
+    assert_equal 36, net.modules.size
+    # assert_equal 26, net.parameters.size
+  end
+
+  def test_vgg16
+    net = TorchVision::Models::VGG16.new
+    assert_equal 42, net.modules.size
+    # assert_equal 32, net.parameters.size
+  end
+
+  def test_vgg19
+    net = TorchVision::Models::VGG19.new
+    assert_equal 48, net.modules.size
+    # assert_equal 38, net.parameters.size
   end
 end

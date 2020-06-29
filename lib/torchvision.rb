@@ -29,6 +29,9 @@ require "torchvision/models/resnet18"
 require "torchvision/models/resnet34"
 require "torchvision/models/vgg"
 require "torchvision/models/vgg11"
+require "torchvision/models/vgg13"
+require "torchvision/models/vgg16"
+require "torchvision/models/vgg19"
 
 # transforms
 require "torchvision/transforms/compose"
