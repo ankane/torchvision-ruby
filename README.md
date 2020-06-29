@@ -45,17 +45,50 @@ TorchVision::Transforms::Compose.new([
 
 ## Models
 
+- [AlexNet](#alexnet)
+- [ResNet](#resnet)
+- [ResNeXt](#resnext)
+- [VGG](#vgg)
+- [Wide ResNet](#wide-resnet)
+
+### AlexNet
+
 ```ruby
-TorchVision::Models::ResNet18.new
+TorchVision::Models::AlexNet.new
 ```
 
-Supported models are:
+### ResNet
 
-- [AlexNet](https://arxiv.org/abs/1404.5997)
-- [ResNet](https://arxiv.org/abs/1512.03385) (ResNet18, ResNet34, ResNet50, ResNet101, ResNet152)
-- [ResNeXt](https://arxiv.org/abs/1611.05431)
-- [VGG](https://arxiv.org/abs/1409.1556) (VGG11, VGG13, VGG16, VGG19)
-- Wide ResNet
+```ruby
+TorchVision::Models::ResNet18.new
+TorchVision::Models::ResNet34.new
+TorchVision::Models::ResNet50.new
+TorchVision::Models::ResNet101.new
+TorchVision::Models::ResNet152.new
+```
+
+### ResNeXt
+
+```ruby
+TorchVision::Models::ResNext52_32x4d.new
+TorchVision::Models::ResNext101_32x8d.new
+```
+
+### VGG
+
+```ruby
+TorchVision::Models::VGG11.new
+TorchVision::Models::VGG13.new
+TorchVision::Models::VGG16.new
+TorchVision::Models::VGG19.new
+```
+
+### Wide ResNet
+
+```ruby
+TorchVision::Models::WideResNet52_2.new
+TorchVision::Models::WideResNet101_2.new
+```
 
 ## Disclaimer
 
