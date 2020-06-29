@@ -2,7 +2,9 @@
 
 - Added AlexNet model
 - Added ResNet34, ResNet50, ResNet101, and ResNet152 models
-- Added VGG11 model
+- Added ResNeXt model
+- Added VGG11, VGG13, VGG16, and VGG19 models
+- Added Wide ResNet model
 
 ## 0.1.2 (2020-04-29)
 

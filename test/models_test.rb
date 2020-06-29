@@ -50,6 +50,18 @@ class ModelsTest < Minitest::Test
     # assert_equal 467, net.parameters.size
   end
 
+  def test_resnext50_32x4d
+    net = TorchVision::Models::ResNext50_32x4d.new
+    assert_equal 151, net.modules.size
+    # assert_equal 161, net.parameters.size
+  end
+
+  def test_resnext101_32x8d
+    net = TorchVision::Models::ResNext101_32x8d.new
+    assert_equal 287, net.modules.size
+    # assert_equal 314, net.parameters.size
+  end
+
   def test_vgg11
     net = TorchVision::Models::VGG11.new
     assert_equal 32, net.modules.size
@@ -72,5 +84,17 @@ class ModelsTest < Minitest::Test
     net = TorchVision::Models::VGG19.new
     assert_equal 48, net.modules.size
     # assert_equal 38, net.parameters.size
+  end
+
+  def test_wide_resnet50_2
+    net = TorchVision::Models::WideResNet50_2.new
+    assert_equal 151, net.modules.size
+    # assert_equal 161, net.parameters.size
+  end
+
+  def test_wide_resnet101_2
+    net = TorchVision::Models::WideResNet101_2.new
+    assert_equal 287, net.modules.size
+    # assert_equal 314, net.parameters.size
   end
 end
