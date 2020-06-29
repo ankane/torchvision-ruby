@@ -78,9 +78,13 @@ TorchVision::Models::ResNext101_32x8d.new
 
 ```ruby
 TorchVision::Models::VGG11.new
+TorchVision::Models::VGG11BN.new
 TorchVision::Models::VGG13.new
+TorchVision::Models::VGG13BN.new
 TorchVision::Models::VGG16.new
+TorchVision::Models::VGG16BN.new
 TorchVision::Models::VGG19.new
+TorchVision::Models::VGG19BN.new
 ```
 
 ### Wide ResNet

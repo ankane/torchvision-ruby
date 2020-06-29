@@ -68,10 +68,22 @@ class ModelsTest < Minitest::Test
     # assert_equal 22, net.parameters.size
   end
 
+  def test_vgg11_bn
+    net = TorchVision::Models::VGG11BN.new
+    assert_equal 40, net.modules.size
+    # assert_equal 38, net.parameters.size
+  end
+
   def test_vgg13
     net = TorchVision::Models::VGG13.new
     assert_equal 36, net.modules.size
     # assert_equal 26, net.parameters.size
+  end
+
+  def test_vgg13_bn
+    net = TorchVision::Models::VGG13BN.new
+    assert_equal 46, net.modules.size
+    # assert_equal 46, net.parameters.size
   end
 
   def test_vgg16
@@ -80,10 +92,22 @@ class ModelsTest < Minitest::Test
     # assert_equal 32, net.parameters.size
   end
 
+  def test_vgg16_bn
+    net = TorchVision::Models::VGG16BN.new
+    assert_equal 55, net.modules.size
+    # assert_equal 58, net.parameters.size
+  end
+
   def test_vgg19
     net = TorchVision::Models::VGG19.new
     assert_equal 48, net.modules.size
     # assert_equal 38, net.parameters.size
+  end
+
+  def test_vgg19_bn
+    net = TorchVision::Models::VGG19BN.new
+    assert_equal 64, net.modules.size
+    # assert_equal 70, net.parameters.size
   end
 
   def test_wide_resnet50_2
