@@ -51,8 +51,8 @@ TorchVision::Models::ResNet18.new
 
 Supported models are:
 
-- ResNet18
-- ResNet34 [master]
+- [AlexNet](https://arxiv.org/abs/1404.5997)
+- [ResNet](https://arxiv.org/abs/1512.03385) (ResNet18, ResNet34)
 
 ## Disclaimer
 

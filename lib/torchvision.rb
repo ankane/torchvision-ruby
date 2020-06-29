@@ -21,6 +21,7 @@ require "torchvision/datasets/fashion_mnist"
 require "torchvision/datasets/kmnist"
 
 # models
+require "torchvision/models/alexnet"
 require "torchvision/models/basic_block"
 require "torchvision/models/bottleneck"
 require "torchvision/models/resnet"

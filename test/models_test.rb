@@ -19,4 +19,9 @@ class ModelsTest < Minitest::Test
       break
     end
   end
+
+  def test_alexnet
+    net = TorchVision::Models::AlexNet.new
+    assert_equal 24, net.modules.size
+  end
 end
