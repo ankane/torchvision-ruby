@@ -4,6 +4,8 @@ class ModelsTest < Minitest::Test
   def test_alexnet
     net = TorchVision::Models::AlexNet.new
     assert_equal 24, net.modules.size
+    # TODO uncommented when torch-rb >= 0.2.6 released
+    # assert_equal 16, net.parameters.size
   end
 
   def test_resnet
