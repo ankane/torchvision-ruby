@@ -1,6 +1,17 @@
 module TorchVision
   module Models
     class VGG < Torch::NN::Module
+      MODEL_URLS = {
+        "vgg11" => "https://download.pytorch.org/models/vgg11-bbd30ac9.pth",
+        "vgg13" => "https://download.pytorch.org/models/vgg13-c768596a.pth",
+        "vgg16" => "https://download.pytorch.org/models/vgg16-397923af.pth",
+        "vgg19" => "https://download.pytorch.org/models/vgg19-dcbb9e9d.pth",
+        "vgg11_bn" => "https://download.pytorch.org/models/vgg11_bn-6002323d.pth",
+        "vgg13_bn" => "https://download.pytorch.org/models/vgg13_bn-abd245e5.pth",
+        "vgg16_bn" => "https://download.pytorch.org/models/vgg16_bn-6c64b313.pth",
+        "vgg19_bn" => "https://download.pytorch.org/models/vgg19_bn-c79401a0.pth"
+      }
+
       def initialize(features, num_classes: 1000, init_weights: true)
         super()
         @features = features
@@ -41,15 +52,25 @@ module TorchVision
         end
       end
 
-      def self.make_layers(cfg, batch_norm)
-        cfgs = {
-          "A" => [64, "M", 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"],
-          "B" => [64, 64, "M", 128, 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"],
-          "D" => [64, 64, "M", 128, 128, "M", 256, 256, 256, "M", 512, 512, 512, "M", 512, 512, 512, "M"],
-          "E" => [64, 64, "M", 128, 128, "M", 256, 256, 256, 256, "M", 512, 512, 512, 512, "M", 512, 512, 512, 512, "M"],
-        }
-        cfg = cfgs[cfg]
+      CFGS = {
+        "A" => [64, "M", 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"],
+        "B" => [64, 64, "M", 128, 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"],
+        "D" => [64, 64, "M", 128, 128, "M", 256, 256, 256, "M", 512, 512, 512, "M", 512, 512, 512, "M"],
+        "E" => [64, 64, "M", 128, 128, "M", 256, 256, 256, 256, "M", 512, 512, 512, 512, "M", 512, 512, 512, 512, "M"],
+      }
 
+      def self.make_model(arch, cfg, batch_norm, pretrained: false, **kwargs)
+        kwargs[:init_weights] = false if pretrained
+        model = VGG.new(make_layers(CFGS[cfg], batch_norm), **kwargs)
+        if pretrained
+          url = MODEL_URLS[arch]
+          state_dict = Torch::Hub.load_state_dict_from_url(url)
+          model.load_state_dict(state_dict)
+        end
+        model
+      end
+
+      def self.make_layers(cfg, batch_norm)
         layers = []
         in_channels = 3
         cfg.each do |v|
