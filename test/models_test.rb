@@ -26,6 +26,30 @@ class ModelsTest < Minitest::Test
     end
   end
 
+  def test_resnet34
+    net = TorchVision::Models::ResNet34.new
+    assert_equal 116, net.modules.size
+    # assert_equal 110, net.parameters.size
+  end
+
+  def test_resnet50
+    net = TorchVision::Models::ResNet50.new
+    assert_equal 151, net.modules.size
+    # assert_equal 161, net.parameters.size
+  end
+
+  def test_resnet101
+    net = TorchVision::Models::ResNet101.new
+    assert_equal 287, net.modules.size
+    # assert_equal 314, net.parameters.size
+  end
+
+  def test_resnet152
+    net = TorchVision::Models::ResNet152.new
+    assert_equal 423, net.modules.size
+    # assert_equal 467, net.parameters.size
+  end
+
   def test_vgg11
     net = TorchVision::Models::VGG11.new
     assert_equal 32, net.modules.size

@@ -1,7 +1,7 @@
 ## 0.1.3 (unreleased)
 
 - Added AlexNet model
-- Added Resnet34 model
+- Added ResNet34, ResNet50, ResNet101, and ResNet152 models
 - Added VGG11 model
 
 ## 0.1.2 (2020-04-29)
