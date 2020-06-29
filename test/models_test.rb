@@ -1,6 +1,11 @@
 require_relative "test_helper"
 
 class ModelsTest < Minitest::Test
+  def test_alexnet
+    net = TorchVision::Models::AlexNet.new
+    assert_equal 24, net.modules.size
+  end
+
   def test_resnet
     Torch.manual_seed(1)
 
@@ -18,10 +23,5 @@ class ModelsTest < Minitest::Test
       net.call(data)
       break
     end
-  end
-
-  def test_alexnet
-    net = TorchVision::Models::AlexNet.new
-    assert_equal 24, net.modules.size
   end
 end
