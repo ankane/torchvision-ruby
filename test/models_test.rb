@@ -8,7 +8,7 @@ class ModelsTest < Minitest::Test
     # assert_equal 16, net.parameters.size
   end
 
-  def test_resnet
+  def test_resnet18
     Torch.manual_seed(1)
 
     transform = TorchVision::Transforms::Compose.new([
@@ -25,5 +25,12 @@ class ModelsTest < Minitest::Test
       net.call(data)
       break
     end
+  end
+
+  def test_vgg11
+    net = TorchVision::Models::VGG11.new
+    assert_equal 32, net.modules.size
+    # TODO uncommented when torch-rb >= 0.2.6 released
+    # assert_equal 22, net.parameters.size
   end
 end

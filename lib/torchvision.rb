@@ -27,6 +27,8 @@ require "torchvision/models/bottleneck"
 require "torchvision/models/resnet"
 require "torchvision/models/resnet18"
 require "torchvision/models/resnet34"
+require "torchvision/models/vgg"
+require "torchvision/models/vgg11"
 
 # transforms
 require "torchvision/transforms/compose"

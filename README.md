@@ -53,6 +53,7 @@ Supported models are:
 
 - [AlexNet](https://arxiv.org/abs/1404.5997)
 - [ResNet](https://arxiv.org/abs/1512.03385) (ResNet18, ResNet34)
+- [VGG](https://arxiv.org/abs/1409.1556) (VGG11)
 
 ## Disclaimer
 

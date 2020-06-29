@@ -2,6 +2,7 @@
 
 - Added AlexNet model
 - Added Resnet34 model
+- Added VGG11 model
 
 ## 0.1.2 (2020-04-29)
 
