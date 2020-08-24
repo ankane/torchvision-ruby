@@ -2,8 +2,6 @@
 
 :fire: Computer vision datasets, transforms, and models for Ruby
 
-This gem is currently experimental. There may be breaking changes between each release. Please report any issues you experience.
-
 [![Build Status](https://travis-ci.org/ankane/torchvision.svg?branch=master)](https://travis-ci.org/ankane/torchvision)
 
 ## Installation
