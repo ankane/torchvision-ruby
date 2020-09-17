@@ -44,11 +44,15 @@ module TorchVision
 
           if pic.is_a?(Numo::NArray)
             if pic.ndim == 2
-              raise Torch::NotImplementedYet
+              pic = pic.reshape(*pic.shape, 1)
             end
 
             img = Torch.from_numo(pic.transpose(2, 0, 1))
-            return img.float.div(255)
+            if img.dtype == :uint8
+              return img.float.div(255)
+            else
+              return img
+            end
           end
 
           pic = pic.float
