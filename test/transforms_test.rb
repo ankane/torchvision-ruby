@@ -2,9 +2,18 @@ require_relative "test_helper"
 
 class TransformsTest < Minitest::Test
   def test_compose
+    x = Numo::NArray.cast([[[0.0], [9], [-9]]])
+    transform = TorchVision::Transforms::Compose.new([
+      TorchVision::Transforms::ToTensor.new,
+      TorchVision::Transforms::Normalize.new([0], [3])
+    ])
+    assert_equal [[[0, 3, -3]]], transform.call(x).to_a
   end
 
   def test_normalize
+    transform = TorchVision::Transforms::Normalize.new([0], [3])
+    x = Torch.tensor([[[0.0], [9], [-9]]])
+    assert_equal [[[0], [3], [-3]]], transform.call(x).to_a
   end
 
   def test_to_tensor
