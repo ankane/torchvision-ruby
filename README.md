@@ -6,6 +6,12 @@
 
 ## Installation
 
+First, [install libvips](https://libvips.github.io/libvips/install.html). For Homebrew, use:
+
+```sh
+brew install vips
+```
+
 Add this line to your application’s Gemfile:
 
 ```ruby
