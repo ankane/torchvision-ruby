@@ -57,8 +57,7 @@ module TorchVision
 
           case pic.format
           when :uchar
-            # TODO make more efficient - use ByteStorage?
-            img = Torch.from_numo(Numo::UInt8.from_binary(pic.write_to_memory))
+            img = Torch::ByteTensor.new(Torch::ByteStorage.from_buffer(pic.write_to_memory))
           else
             raise Error, "Format not supported yet: #{pic.format}"
           end
