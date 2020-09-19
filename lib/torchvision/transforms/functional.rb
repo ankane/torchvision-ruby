@@ -32,6 +32,26 @@ module TorchVision
           tensor
         end
 
+        def resize(img, size)
+          raise "img should be Vips::Image. Got #{img.class.name}" unless img.is_a?(Vips::Image)
+          # TODO support array size
+          raise "Got inappropriate size arg: #{size}" unless size.is_a?(Integer)
+
+          w, h = img.size
+          if (w <= h && w == size) || (h <= w && h == size)
+            return img
+          end
+          if w < h
+            ow = size
+            oh = (size * h / w).to_i
+            img.thumbnail_image(ow, height: oh)
+          else
+            oh = size
+            ow = (size * w / h).to_i
+            img.thumbnail_image(ow, height: oh)
+          end
+        end
+
         # TODO improve
         def to_tensor(pic)
           if !pic.is_a?(Numo::NArray) && !pic.is_a?(Vips::Image)

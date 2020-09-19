@@ -49,6 +49,7 @@ require "torchvision/models/wide_resnet101_2"
 require "torchvision/transforms/compose"
 require "torchvision/transforms/functional"
 require "torchvision/transforms/normalize"
+require "torchvision/transforms/resize"
 require "torchvision/transforms/to_tensor"
 
 # vips hack
