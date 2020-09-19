@@ -61,22 +61,6 @@ module TorchVision
       def check_integrity(path, sha256)
         File.exist?(path) && Digest::SHA256.file(path).hexdigest == sha256
       end
-
-      def vips_image_from_array(array)
-        raise "Expected Numo::UInt8, not #{array.class.name}" unless array.is_a?(Numo::UInt8)
-
-        # TODO use Numo directly
-        array = Torch.from_numo(array)
-
-        width, height = array.shape
-        bands = array.shape[2] || 1
-        format = 0 # uchar
-        data = FFI::Pointer.new(:uint8, array._data_ptr)
-        bytesize = array.numel * array.element_size
-
-        image = Vips.vips_image_new_from_memory(data, bytesize, width, height, bands, format)
-        Vips::Image.new(image)
-      end
     end
   end
 end

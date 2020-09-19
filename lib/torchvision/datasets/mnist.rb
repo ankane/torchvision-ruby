@@ -24,7 +24,7 @@ module TorchVision
       def [](index)
         img, target = @data[index], @targets[index].item
 
-        img = vips_image_from_array(img.numo)
+        img = Utils.image_from_array(img.numo)
 
         img = @transform.call(img) if @transform
 

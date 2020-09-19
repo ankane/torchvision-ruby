@@ -43,7 +43,7 @@ module TorchVision
         # TODO remove trues when Numo supports it
         img, target = @data[index, true, true, true], @targets[index]
 
-        img = vips_image_from_array(img)
+        img = Utils.image_from_array(img)
 
         img = @transform.call(img) if @transform
 

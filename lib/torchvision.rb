@@ -11,6 +11,7 @@ require "rubygems/package"
 require "tmpdir"
 
 # modules
+require "torchvision/utils"
 require "torchvision/version"
 
 # datasets
