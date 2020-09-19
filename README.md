@@ -47,6 +47,13 @@ TorchVision::Transforms::Compose.new([
 ])
 ```
 
+Supported transforms are:
+
+- Compose
+- Normalize
+- Resize
+- ToTensor
+
 ## Models
 
 - [AlexNet](#alexnet)
