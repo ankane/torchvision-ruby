@@ -78,17 +78,16 @@ module TorchVision
       def save_image(tensor, fp, nrow: 8, padding: 2, normalize: false, range: nil, scale_each: false, pad_value: 0)
         grid = make_grid(tensor, nrow: nrow, padding: padding, pad_value: pad_value, normalize: normalize, range: range, scale_each: scale_each)
         # Add 0.5 after unnormalizing to [0, 255] to round to nearest integer
-        ndarr = grid.mul(255).add!(0.5).clamp!(0, 255).permute(1, 2, 0).to("cpu", dtype: :uint8).numo
+        ndarr = grid.mul(255).add!(0.5).clamp!(0, 255).permute(1, 2, 0).to("cpu", dtype: :uint8)
         im = image_from_array(ndarr)
         im.write_to_file(fp)
       end
 
+      # private
       # Ruby-specific method
+      # TODO use Numo when bridge available
       def image_from_array(array)
-        raise "Expected Numo::UInt8, not #{array.class.name}" unless array.is_a?(Numo::UInt8)
-
-        # TODO use Numo directly
-        array = Torch.from_numo(array)
+        raise "Expected tensor with dtype :uint8" unless array.is_a?(Torch::Tensor) && array.dtype == :uint8
 
         width, height = array.shape
         bands = array.shape[2] || 1

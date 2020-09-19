@@ -31,8 +31,10 @@ module TorchVision
 
         @targets = @targets.unpack("C*")
         # TODO switch i to -1 when Numo supports it
-        @data = Numo::UInt8.from_binary(@data).reshape(@targets.size, 3, 32, 32)
-        @data = @data.transpose(0, 2, 3, 1)
+        # @data = Numo::UInt8.from_binary(@data).reshape(@targets.size, 3, 32, 32)
+        # @data = @data.transpose(0, 2, 3, 1)
+        @data = Torch::ByteTensor.new(Torch::ByteStorage.from_buffer(@data)).reshape(-1, 3, 32, 32)
+        @data = @data.permute(0, 2, 3, 1) # convert to HWC
       end
 
       def size
@@ -41,7 +43,8 @@ module TorchVision
 
       def [](index)
         # TODO remove trues when Numo supports it
-        img, target = @data[index, true, true, true], @targets[index]
+        # img, target = @data[index, true, true, true], @targets[index]
+        img, target = @data[index], @targets[index]
 
         img = Utils.image_from_array(img)
 
