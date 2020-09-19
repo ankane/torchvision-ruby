@@ -5,7 +5,12 @@ before_install:
   - export LIBTORCH_VERSION=1.6.0
   - ./test/ci/install_libtorch.sh
   - bundle config build.torch-rb --with-torch-dir=$HOME/libtorch/$LIBTORCH_VERSION
+addons:
+  apt:
+    packages:
+      - libvips
 cache:
+  apt: true
   bundler: true
   directories:
     - $HOME/libtorch
