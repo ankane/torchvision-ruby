@@ -24,7 +24,8 @@ module TorchVision
       def [](index)
         img, target = @data[index], @targets[index].item
 
-        # TODO convert to image
+        img = vips_image_from_array(img)
+
         img = @transform.call(img) if @transform
 
         target = @target_transform.call(target) if @target_transform
@@ -111,6 +112,17 @@ module TorchVision
           gz.read(offset)
           Torch.tensor(Numo::UInt8.from_string(gz.read, shape))
         end
+      end
+
+      def vips_image_from_array(array)
+        width, height = array.shape
+        bands = 1
+        format = 0 # uchar
+        data = FFI::Pointer.new(array.dtype, array._data_ptr)
+        bytesize = array.numel * array.element_size
+
+        image = Vips.vips_image_new_from_memory(data, bytesize, width, height, bands, format)
+        Vips::Image.new(image)
       end
     end
   end

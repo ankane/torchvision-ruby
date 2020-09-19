@@ -1,5 +1,6 @@
 # dependencies
 require "numo/narray"
+require "vips"
 require "torch"
 
 # stdlib
@@ -49,6 +50,13 @@ require "torchvision/transforms/compose"
 require "torchvision/transforms/functional"
 require "torchvision/transforms/normalize"
 require "torchvision/transforms/to_tensor"
+
+# vips hack
+if Vips.respond_to?(:vips_image_new_from_memory)
+  warn "[torchvision] Vips hack no longer needed"
+else
+  Vips.attach_function :vips_image_new_from_memory, [:pointer, :size_t, :int, :int, :int, :int], :pointer
+end
 
 module TorchVision
   class Error < StandardError; end

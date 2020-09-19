@@ -34,8 +34,8 @@ module TorchVision
 
         # TODO improve
         def to_tensor(pic)
-          if !pic.is_a?(Numo::NArray) && !pic.is_a?(Torch::Tensor)
-            raise ArgumentError, "pic should be tensor or Numo::NArray. Got #{pic.class.name}"
+          if !pic.is_a?(Numo::NArray) && !pic.is_a?(Vips::Image)
+            raise ArgumentError, "pic should be Vips::Image or Numo::NArray. Got #{pic.class.name}"
           end
 
           if pic.is_a?(Numo::NArray) && ![2, 3].include?(pic.ndim)
@@ -55,8 +55,18 @@ module TorchVision
             end
           end
 
-          pic = pic.float
-          pic.unsqueeze!(0).div!(255)
+          case pic.format
+          when :uchar
+            # TODO make more efficient - use ByteStorage?
+            img = Torch.from_numo(Numo::UInt8.from_binary(pic.write_to_memory))
+          else
+            raise Error, "Format not supported yet: #{pic.format}"
+          end
+
+          img = img.view(pic.height, pic.width, pic.bands)
+          # put it from HWC to CHW format
+          img = img.permute([2, 0, 1]).contiguous
+          img.float.div(255)
         end
       end
     end
