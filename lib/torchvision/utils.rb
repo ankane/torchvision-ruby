@@ -89,7 +89,7 @@ module TorchVision
       def image_from_array(array)
         raise "Expected tensor with dtype :uint8" unless array.is_a?(Torch::Tensor) && array.dtype == :uint8
 
-        array = array.contiguous
+        array = array.contiguous unless array.contiguous?
 
         width, height = array.shape
         bands = array.shape[2] || 1
