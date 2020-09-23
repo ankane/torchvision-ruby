@@ -53,28 +53,9 @@ require "torchvision/transforms/normalize"
 require "torchvision/transforms/resize"
 require "torchvision/transforms/to_tensor"
 
-# vips hack
-if Vips.respond_to?(:vips_image_new_from_memory)
-  warn "[torchvision] Vips hack no longer needed"
-else
+# not ideal, but ruby-vips doesn't attach this function yet
+unless Vips.respond_to?(:vips_image_new_from_memory)
   Vips.attach_function :vips_image_new_from_memory, [:pointer, :size_t, :int, :int, :int, :int], :pointer
-end
-
-# iruby enhancement
-if defined?(IRuby::Display::Registry)
-  module IRuby::Display::Registry
-    match do |obj|
-      defined?(Vips::Image) && Vips::Image === obj
-    end
-    format do |obj|
-      loader = obj.get("vips-loader") rescue nil
-      if loader == "jpegload"
-        ["image/jpeg", obj.write_to_buffer(".jpg")]
-      else
-        ["image/png", obj.write_to_buffer(".png")]
-      end
-    end
-  end
 end
 
 module TorchVision
