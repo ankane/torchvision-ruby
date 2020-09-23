@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "numo-narray"
   spec.add_dependency "ruby-vips"
-  spec.add_dependency "torch-rb", ">= 0.2.7"
+  spec.add_dependency "torch-rb", ">= 0.3.7"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
