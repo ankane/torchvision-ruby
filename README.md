@@ -6,7 +6,7 @@
 
 ## Installation
 
-First, [install libvips](https://libvips.github.io/libvips/install.html). For Homebrew, use:
+First, [install libvips](libvips-installation). For Homebrew, use:
 
 ```sh
 brew install vips
@@ -108,6 +108,35 @@ TorchVision::Models::VGG19BN.new
 ```ruby
 TorchVision::Models::WideResNet52_2.new
 TorchVision::Models::WideResNet101_2.new
+```
+
+## libvips Installation
+
+### Mac
+
+```sh
+brew install vips
+```
+
+### Windows
+
+Check out [the options](https://libvips.github.io/libvips/install.html).
+
+### Ubuntu
+
+```sh
+sudo apt install libvips
+```
+
+### Travis CI
+
+Add to `.travis.yml`:
+
+```yml
+addons:
+  apt:
+    packages:
+      - libvips
 ```
 
 ## Disclaimer
