@@ -1,3 +1,9 @@
+## 0.2.0 (unreleased)
+
+Breaking
+
+- Datasets return images instead of tensors
+
 ## 0.1.3 (2020-06-29)
 
 - Added AlexNet model
