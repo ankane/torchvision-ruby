@@ -16,6 +16,11 @@ gem 'torchvision'
 
 This library follows the [Python API](https://pytorch.org/docs/stable/torchvision/index.html). Many methods and options are missing at the moment. PRs welcome!
 
+## Examples
+
+- [MNIST](https://github.com/ankane/torch.rb/tree/master/examples/mnist)
+- [Generative Adversarial Networks](https://github.com/ankane/torch.rb/tree/master/examples/gan)
+
 ## Datasets
 
 Load a dataset
@@ -40,6 +45,12 @@ TorchVision::Transforms::Compose.new([
   TorchVision::Transforms::Normalize.new([0.1307], [0.3081])
 ])
 ```
+
+Supported transforms are:
+
+- Compose
+- Normalize
+- ToTensor
 
 ## Models
 
