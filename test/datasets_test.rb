@@ -24,8 +24,10 @@ class DatasetsTest < Minitest::Test
     assert_kind_of Torch::Tensor, trainset[0][0]
     assert_equal 9, trainset[0][1]
 
-    data = trainset.instance_variable_get("@data")
-    assert_equal [60000, 28, 28], data.shape
+    assert_kind_of Torch::Tensor, trainset.data
+    assert_equal [60000, 28, 28], trainset.data.shape
+    assert_kind_of Torch::Tensor, trainset.targets
+    assert_equal [60000], trainset.targets.shape
 
     testset = TorchVision::Datasets::FashionMNIST.new(root, train: false, download: true)
     assert_equal 10000, testset.size
@@ -39,8 +41,10 @@ class DatasetsTest < Minitest::Test
     assert_kind_of Torch::Tensor, trainset[0][0]
     assert_equal 8, trainset[0][1]
 
-    data = trainset.instance_variable_get("@data")
-    assert_equal [60000, 28, 28], data.shape
+    assert_kind_of Torch::Tensor, trainset.data
+    assert_equal [60000, 28, 28], trainset.data.shape
+    assert_kind_of Torch::Tensor, trainset.targets
+    assert_equal [60000], trainset.targets.shape
 
     testset = TorchVision::Datasets::KMNIST.new(root, train: false, download: true)
     assert_equal 10000, testset.size
@@ -53,9 +57,11 @@ class DatasetsTest < Minitest::Test
     assert_equal 50000, trainset.size
     assert_equal 6, trainset[0][1]
 
-    data = trainset.instance_variable_get("@data")
-    assert_equal [50000, 32, 32, 3], data.shape
-    assert_equal [59, 62, 63], data[0..2].to_a
+    assert_kind_of Numo::NArray, trainset.data
+    assert_equal [50000, 32, 32, 3], trainset.data.shape
+    assert_equal [59, 62, 63], trainset.data[0..2].to_a
+    assert_kind_of Array, trainset.targets
+    assert_equal 50000, trainset.targets.size
 
     testset = TorchVision::Datasets::CIFAR10.new(root, train: false, download: true)
     assert_equal 10000, testset.size
@@ -67,8 +73,10 @@ class DatasetsTest < Minitest::Test
     assert_equal 50000, trainset.size
     assert_equal 19, trainset[0][1]
 
-    data = trainset.instance_variable_get("@data")
-    assert_equal [50000, 32, 32, 3], data.shape
+    assert_kind_of Numo::NArray, trainset.data
+    assert_equal [50000, 32, 32, 3], trainset.data.shape
+    assert_kind_of Array, trainset.targets
+    assert_equal 50000, trainset.targets.size
 
     testset = TorchVision::Datasets::CIFAR100.new(root, train: false, download: true)
     assert_equal 10000, testset.size

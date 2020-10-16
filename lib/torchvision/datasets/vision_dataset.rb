@@ -2,6 +2,8 @@ module TorchVision
   module Datasets
     # TODO inherit Torch::Utils::Data::Dataset
     class VisionDataset
+      attr_reader :data, :targets
+
       def initialize(root, transforms: nil, transform: nil, target_transform: nil)
         @root = root
 

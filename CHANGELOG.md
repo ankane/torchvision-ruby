@@ -1,6 +1,6 @@
 ## 0.1.4 (unreleased)
 
-- Added `data` and `targets` methods to MNIST
+- Added `data` and `targets` methods to datasets
 
 ## 0.1.3 (2020-06-29)
 
