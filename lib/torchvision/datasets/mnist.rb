@@ -3,6 +3,8 @@ module TorchVision
     class MNIST < VisionDataset
       # http://yann.lecun.com/exdb/mnist/
 
+      attr_reader :data, :targets
+
       def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
         super(root, transform: transform, target_transform: target_transform)
         @train = train
