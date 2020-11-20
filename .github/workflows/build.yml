@@ -5,20 +5,21 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     env:
+      BUNDLE_BUILD__TORCH-RB: "--with-torch-dir=~/libtorch"
       LIBTORCH_VERSION: 1.7.0
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
         path: ~/libtorch
-        key: libtorch-${{ env.LIBTORCH_VERSION }}
+        key: libtorch-${{ env.LIBTORCH_VERSION }}-v2
       id: cache-libtorch
     - name: Download LibTorch
       if: steps.cache-libtorch.outputs.cache-hit != 'true'
       run: |
+        cd ~
         wget -q -O libtorch.zip https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-$LIBTORCH_VERSION%2Bcpu.zip
         unzip -q libtorch.zip
-    - run: bundle config build.torch-rb --with-torch-dir=$PWD/libtorch
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
