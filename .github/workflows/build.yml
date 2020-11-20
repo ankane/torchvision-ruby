@@ -18,9 +18,7 @@ jobs:
       run: |
         wget -q -O libtorch.zip https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-$LIBTORCH_VERSION%2Bcpu.zip
         unzip -q libtorch.zip
-    - run: |
-        gem install bundler
-        bundle config build.torch-rb --with-torch-dir=$PWD/libtorch
+    - run: bundle config build.torch-rb --with-torch-dir=$PWD/libtorch
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
