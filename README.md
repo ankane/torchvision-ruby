@@ -2,7 +2,7 @@
 
 :fire: Computer vision datasets, transforms, and models for Ruby
 
-[![Build Status](https://travis-ci.org/ankane/torchvision.svg?branch=master)](https://travis-ci.org/ankane/torchvision)
+[![Build Status](https://github.com/ankane/torchvision/workflows/build/badge.svg?branch=master)](https://github.com/ankane/torchvision/actions)
 
 ## Installation
 

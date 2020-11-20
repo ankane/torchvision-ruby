@@ -1,0 +1,31 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ${{ matrix.os }}
+    env:
+      LIBTORCH_VERSION: 1.7.0
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: ~/libtorch
+        key: libtorch-${{ env.LIBTORCH_VERSION }}
+      id: cache-libtorch
+    - name: Download LibTorch
+      if: steps.cache-libtorch.outputs.cache-hit != 'true'
+      run: |
+        wget -q -O libtorch.zip https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-$LIBTORCH_VERSION%2Bcpu.zip
+        unzip -q libtorch.zip
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        # bundler-cache: true
+    - run: bundle config build.torch-rb --with-torch-dir=$PWD/libtorch
+    - run: bundle install
+    - uses: actions/cache@v2
+      with:
+        path: ~/data
+        key: data-v1
+    - run: bundle exec rake test
