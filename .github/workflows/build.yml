@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUNDLE_BUILD__TORCH-RB: "--with-torch-dir=/home/runner/libtorch"
-      LIBTORCH_VERSION: 1.7.0
+      LIBTORCH_VERSION: 1.7.1
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
@@ -22,7 +22,7 @@ jobs:
         unzip -q libtorch.zip
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7
+        ruby-version: 3.0
         bundler-cache: true
     - uses: actions/cache@v2
       with:
