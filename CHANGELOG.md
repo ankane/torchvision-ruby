@@ -1,7 +1,7 @@
 ## 0.2.0 (unreleased)
 
 - Datasets return images instead of tensors
-- Added `Resize` transform
+- Added `RandomHorizontalFlip`, `RandomVerticalFlip`, and `Resize` transforms
 - Added `save_image` method
 
 ## 0.1.3 (2020-06-29)

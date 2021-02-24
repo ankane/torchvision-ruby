@@ -1,11 +1,11 @@
 module TorchVision
   module Transforms
-    class Compose
+    class Compose < Torch::NN::Module
       def initialize(transforms)
         @transforms = transforms
       end
 
-      def call(img)
+      def forward(img)
         @transforms.each do |t|
           img = t.call(img)
         end

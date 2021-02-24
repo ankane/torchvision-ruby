@@ -1,11 +1,11 @@
 module TorchVision
   module Transforms
-    class Resize
+    class Resize < Torch::NN::Module
       def initialize(size)
         @size = size
       end
 
-      def call(img)
+      def forward(img)
         F.resize(img, @size)
       end
     end

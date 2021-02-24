@@ -1,13 +1,13 @@
 module TorchVision
   module Transforms
-    class Normalize
+    class Normalize < Torch::NN::Module
       def initialize(mean, std, inplace: false)
         @mean = mean
         @std = std
         @inplace = inplace
       end
 
-      def call(tensor)
+      def forward(tensor)
         F.normalize(tensor, @mean, @std, inplace: @inplace)
       end
     end

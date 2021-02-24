@@ -22,6 +22,46 @@ class TransformsTest < Minitest::Test
     assert_equal [[[1, 2, 3], [4, 5, 6]]], transform.call(x).to_a
   end
 
+  def test_random_horizontal_flip
+    transform = TorchVision::Transforms::RandomHorizontalFlip.new
+    x = Torch.tensor([[1, 2, 3], [4, 5, 6]])
+    result = transform.call(x).to_a
+    if result[0][0] == 1
+      assert_equal [[1, 2, 3], [4, 5, 6]], result
+    else
+      assert_equal [[3, 2, 1], [6, 5, 4]], result
+    end
+  end
+
+  def test_random_vertical_flip
+    transform = TorchVision::Transforms::RandomVerticalFlip.new
+    x = Torch.tensor([[1, 2, 3], [4, 5, 6]])
+    result = transform.call(x).to_a
+    if result[0][0] == 1
+      assert_equal [[1, 2, 3], [4, 5, 6]], result
+    else
+      assert_equal [[4, 5, 6], [1, 2, 3]], result
+    end
+  end
+
+  def test_hflip_tensor
+    x = Torch.tensor([[1, 2, 3], [4, 5, 6]])
+    assert_equal [[3, 2, 1], [6, 5, 4]], TorchVision::Transforms::F.hflip(x).to_a
+  end
+
+  def test_hflip_image
+    # TODO
+  end
+
+  def test_vflip_tensor
+    x = Torch.tensor([[1, 2, 3], [4, 5, 6]])
+    assert_equal [[4, 5, 6], [1, 2, 3]], TorchVision::Transforms::F.vflip(x).to_a
+  end
+
+  def test_vflip_image
+    # TODO
+  end
+
   def test_mnist
     transform = TorchVision::Transforms::Compose.new([
       TorchVision::Transforms::ToTensor.new,

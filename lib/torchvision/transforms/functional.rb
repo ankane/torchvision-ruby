@@ -87,6 +87,22 @@ module TorchVision
           img = img.permute([2, 0, 1]).contiguous
           img.float.div(255)
         end
+
+        def hflip(img)
+          if img.is_a?(Torch::Tensor)
+            img.flip(-1)
+          else
+            img.flip(:horizontal)
+          end
+        end
+
+        def vflip(img)
+          if img.is_a?(Torch::Tensor)
+            img.flip(-2)
+          else
+            img.flip(:vertical)
+          end
+        end
       end
     end
 
