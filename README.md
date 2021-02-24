@@ -103,6 +103,22 @@ TorchVision::Models::WideResNet52_2.new
 TorchVision::Models::WideResNet101_2.new
 ```
 
+## Pretrained Models
+
+You can download pretrained models with [this script](pretrained.py)
+
+```sh
+pip install torchvision
+python pretrained.py
+```
+
+And load them
+
+```ruby
+net = TorchVision::Models::ResNet18.new
+net.load_state_dict(Torch.load("net.pth"))
+```
+
 ## Disclaimer
 
 This library downloads and prepares public datasets. We don’t host any datasets. Be sure to adhere to the license for each dataset.
