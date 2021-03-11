@@ -6,6 +6,12 @@
 
 ## Installation
 
+First, [install libvips](libvips-installation). For Homebrew, use:
+
+```sh
+brew install vips
+```
+
 Add this line to your application’s Gemfile:
 
 ```ruby
@@ -50,6 +56,9 @@ Supported transforms are:
 
 - Compose
 - Normalize
+- RandomHorizontalFlip
+- RandomVerticalFlip
+- Resize
 - ToTensor
 
 ## Models
@@ -118,6 +127,24 @@ And load them
 net = TorchVision::Models::ResNet18.new
 net.load_state_dict(Torch.load("net.pth"))
 ```
+
+## libvips Installation
+
+### Ubuntu
+
+```sh
+sudo apt install libvips
+```
+
+### Mac
+
+```sh
+brew install vips
+```
+
+### Windows
+
+Check out [the options](https://libvips.github.io/libvips/install.html).
 
 ## Disclaimer
 

@@ -1,5 +1,6 @@
 # dependencies
 require "numo/narray"
+require "vips"
 require "torch"
 
 # stdlib
@@ -10,6 +11,7 @@ require "rubygems/package"
 require "tmpdir"
 
 # modules
+require "torchvision/utils"
 require "torchvision/version"
 
 # datasets
@@ -48,6 +50,9 @@ require "torchvision/models/wide_resnet101_2"
 require "torchvision/transforms/compose"
 require "torchvision/transforms/functional"
 require "torchvision/transforms/normalize"
+require "torchvision/transforms/random_horizontal_flip"
+require "torchvision/transforms/random_vertical_flip"
+require "torchvision/transforms/resize"
 require "torchvision/transforms/to_tensor"
 
 module TorchVision

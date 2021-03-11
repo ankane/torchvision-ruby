@@ -43,7 +43,8 @@ module TorchVision
         # TODO remove trues when Numo supports it
         img, target = @data[index, true, true, true], @targets[index]
 
-        # TODO convert to image
+        img = Utils.image_from_array(img)
+
         img = @transform.call(img) if @transform
 
         target = @target_transform.call(target) if @target_transform

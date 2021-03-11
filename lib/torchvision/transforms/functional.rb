@@ -32,10 +32,30 @@ module TorchVision
           tensor
         end
 
+        def resize(img, size)
+          raise "img should be Vips::Image. Got #{img.class.name}" unless img.is_a?(Vips::Image)
+          # TODO support array size
+          raise "Got inappropriate size arg: #{size}" unless size.is_a?(Integer)
+
+          w, h = img.size
+          if (w <= h && w == size) || (h <= w && h == size)
+            return img
+          end
+          if w < h
+            ow = size
+            oh = (size * h / w).to_i
+            img.thumbnail_image(ow, height: oh)
+          else
+            oh = size
+            ow = (size * w / h).to_i
+            img.thumbnail_image(ow, height: oh)
+          end
+        end
+
         # TODO improve
         def to_tensor(pic)
-          if !pic.is_a?(Numo::NArray) && !pic.is_a?(Torch::Tensor)
-            raise ArgumentError, "pic should be tensor or Numo::NArray. Got #{pic.class.name}"
+          if !pic.is_a?(Numo::NArray) && !pic.is_a?(Vips::Image)
+            raise ArgumentError, "pic should be Vips::Image or Numo::NArray. Got #{pic.class.name}"
           end
 
           if pic.is_a?(Numo::NArray) && ![2, 3].include?(pic.ndim)
@@ -55,8 +75,33 @@ module TorchVision
             end
           end
 
-          pic = pic.float
-          pic.unsqueeze!(0).div!(255)
+          case pic.format
+          when :uchar
+            img = Torch::ByteTensor.new(Torch::ByteStorage.from_buffer(pic.write_to_memory))
+          else
+            raise Error, "Format not supported yet: #{pic.format}"
+          end
+
+          img = img.view(pic.height, pic.width, pic.bands)
+          # put it from HWC to CHW format
+          img = img.permute([2, 0, 1]).contiguous
+          img.float.div(255)
+        end
+
+        def hflip(img)
+          if img.is_a?(Torch::Tensor)
+            img.flip(-1)
+          else
+            img.flip(:horizontal)
+          end
+        end
+
+        def vflip(img)
+          if img.is_a?(Torch::Tensor)
+            img.flip(-2)
+          else
+            img.flip(:vertical)
+          end
         end
       end
     end

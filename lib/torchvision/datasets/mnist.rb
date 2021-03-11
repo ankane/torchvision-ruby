@@ -23,7 +23,8 @@ module TorchVision
       def [](index)
         img, target = @data[index], @targets[index].item
 
-        # TODO convert to image
+        img = Utils.image_from_array(img)
+
         img = @transform.call(img) if @transform
 
         target = @target_transform.call(target) if @target_transform

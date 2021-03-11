@@ -1,6 +1,14 @@
-## 0.1.4 (unreleased)
+## 0.2.0 (unreleased)
 
+- Added `RandomHorizontalFlip`, `RandomVerticalFlip`, and `Resize` transforms
+- Added `save_image` method
 - Added `data` and `targets` methods to datasets
+- Removed support for Ruby < 2.6
+
+Breaking changes
+
+- Added dependency on libvips
+- MNIST datasets return images instead of tensors
 
 ## 0.1.3 (2020-06-29)
 
