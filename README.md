@@ -130,11 +130,15 @@ net.load_state_dict(Torch.load("net.pth"))
 
 ## libvips Installation
 
-### Ubuntu
+### Linux
+
+For Ubuntu, use:
 
 ```sh
 sudo apt install libvips
 ```
+
+For other distributions, [build from source](https://libvips.github.io/libvips/install.html).
 
 ### Mac
 
