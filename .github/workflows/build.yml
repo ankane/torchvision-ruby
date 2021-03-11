@@ -28,4 +28,5 @@ jobs:
       with:
         path: ~/data
         key: data-v2
+    - run: sudo apt install libvips
     - run: bundle exec rake test
