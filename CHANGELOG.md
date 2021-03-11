@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2021-03-11)
 
 - Added `RandomHorizontalFlip`, `RandomVerticalFlip`, and `Resize` transforms
 - Added `save_image` method
