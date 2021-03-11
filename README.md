@@ -6,7 +6,7 @@
 
 ## Installation
 
-First, [install libvips](libvips-installation). For Homebrew, use:
+First, [install libvips](#libvips-installation). For Homebrew, use:
 
 ```sh
 brew install vips
