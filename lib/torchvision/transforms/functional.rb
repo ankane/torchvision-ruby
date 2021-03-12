@@ -90,6 +90,7 @@ module TorchVision
 
         def hflip(img)
           if img.is_a?(Torch::Tensor)
+            assert_image_tensor(img)
             img.flip(-1)
           else
             img.flip(:horizontal)
@@ -98,6 +99,7 @@ module TorchVision
 
         def vflip(img)
           if img.is_a?(Torch::Tensor)
+            assert_image_tensor(img)
             img.flip(-2)
           else
             img.flip(:vertical)
@@ -106,6 +108,7 @@ module TorchVision
 
         def crop(img, top, left, height, width)
           if img.is_a?(Torch::Tensor)
+            assert_image_tensor(img)
             indexes = [true] * (img.dim - 2)
             img[*indexes, top...(top + height), left...(left + width)]
           else
