@@ -16,6 +16,8 @@ require "torchvision/version"
 
 # datasets
 require "torchvision/datasets/vision_dataset"
+require "torchvision/datasets/dataset_folder"
+require "torchvision/datasets/image_folder"
 require "torchvision/datasets/cifar10"
 require "torchvision/datasets/cifar100"
 require "torchvision/datasets/mnist"
