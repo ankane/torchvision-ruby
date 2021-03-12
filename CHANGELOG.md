@@ -1,3 +1,7 @@
+## 0.2.1 (unreleased)
+
+- Added `crop` method
+
 ## 0.2.0 (2021-03-11)
 
 - Added `RandomHorizontalFlip`, `RandomVerticalFlip`, and `Resize` transforms

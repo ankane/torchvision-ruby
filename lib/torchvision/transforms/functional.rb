@@ -103,6 +103,15 @@ module TorchVision
             img.flip(:vertical)
           end
         end
+
+        def crop(img, top, left, height, width)
+          if img.is_a?(Torch::Tensor)
+            indexes = [true] * (img.dim - 2)
+            img[*indexes, top...(top + height), left...(left + width)]
+          else
+            img.crop(left, top, width, height)
+          end
+        end
       end
     end
 
