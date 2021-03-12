@@ -71,6 +71,15 @@ class TransformsTest < Minitest::Test
     # TODO
   end
 
+  def test_center_crop_tensor
+    x = Torch.arange(0, 100).reshape(10, 10)
+    assert_equal [[44, 45], [54, 55]], TorchVision::Transforms::F.center_crop(x, 2).to_a
+  end
+
+  def test_center_crop_image
+    # TODO
+  end
+
   def test_mnist
     transform = TorchVision::Transforms::Compose.new([
       TorchVision::Transforms::ToTensor.new,

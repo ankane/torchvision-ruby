@@ -54,6 +54,7 @@ TorchVision::Transforms::Compose.new([
 
 Supported transforms are:
 
+- CenterCrop [master]
 - Compose
 - Normalize
 - RandomHorizontalFlip

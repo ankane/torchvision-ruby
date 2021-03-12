@@ -112,6 +112,53 @@ module TorchVision
             img.crop(left, top, width, height)
           end
         end
+
+        def center_crop(img, output_size)
+          if output_size.is_a?(Integer)
+            output_size = [output_size.to_i, output_size.to_i]
+          elsif output_size.is_a?(Array) && output_size.length == 1
+            output_size = [output_size[0], output_size[0]]
+          end
+
+          image_width, image_height = image_size(img)
+          crop_height, crop_width = output_size
+
+          if crop_width > image_width || crop_height > image_height
+            padding_ltrb = [
+              crop_width > image_width ? (crop_width - image_width).div(2) : 0,
+              crop_height > image_height ? (crop_height - image_height).div(2) : 0,
+              crop_width > image_width ? (crop_width - image_width + 1).div(2) : 0,
+              crop_height > image_height ? (crop_height - image_height + 1).div(2) : 0
+            ]
+            # TODO
+            img = pad(img, padding_ltrb, fill: 0)
+            image_width, image_height = image_size(img)
+            if crop_width == image_width && crop_height == image_height
+              return img
+            end
+          end
+
+          crop_top = ((image_height - crop_height) / 2.0).round
+          crop_left = ((image_width - crop_width) / 2.0).round
+          crop(img, crop_top, crop_left, crop_height, crop_width)
+        end
+
+        private
+
+        def image_size(img)
+          if img.is_a?(Torch::Tensor)
+            assert_image_tensor(img)
+            [img.shape[-1], img.shape[-2]]
+          else
+            [img.width, img.height]
+          end
+        end
+
+        def assert_image_tensor(img)
+          if img.ndim < 2
+            raise TypeError, "Tensor is not a torch image."
+          end
+        end
       end
     end
 
