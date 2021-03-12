@@ -58,6 +58,7 @@ Supported transforms are:
 - Compose
 - Normalize
 - RandomHorizontalFlip
+- RandomResizedCrop [master]
 - RandomVerticalFlip
 - Resize
 - ToTensor

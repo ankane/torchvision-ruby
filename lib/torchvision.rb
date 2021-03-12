@@ -47,10 +47,12 @@ require "torchvision/models/wide_resnet50_2"
 require "torchvision/models/wide_resnet101_2"
 
 # transforms
+require "torchvision/transforms/center_crop"
 require "torchvision/transforms/compose"
 require "torchvision/transforms/functional"
 require "torchvision/transforms/normalize"
 require "torchvision/transforms/random_horizontal_flip"
+require "torchvision/transforms/random_resized_crop"
 require "torchvision/transforms/random_vertical_flip"
 require "torchvision/transforms/resize"
 require "torchvision/transforms/to_tensor"

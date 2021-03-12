@@ -146,6 +146,13 @@ module TorchVision
           crop(img, crop_top, crop_left, crop_height, crop_width)
         end
 
+        # TODO interpolation
+        def resized_crop(img, top, left, height, width, size)
+          img = crop(img, top, left, height, width)
+          img = resize(img, size) #, interpolation)
+          img
+        end
+
         private
 
         def image_size(img)
