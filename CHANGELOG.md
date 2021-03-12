@@ -1,5 +1,6 @@
 ## 0.2.1 (unreleased)
 
+- Added `ImageFolder` and `DatasetFolder`
 - Added `CenterCrop` and `RandomResizedCrop` transforms
 - Added `crop` method
 
