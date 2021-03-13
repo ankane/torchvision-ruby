@@ -25,7 +25,8 @@ This library follows the [Python API](https://pytorch.org/docs/stable/torchvisio
 ## Examples
 
 - [MNIST](https://github.com/ankane/torch.rb/tree/master/examples/mnist)
-- [Generative Adversarial Networks](https://github.com/ankane/torch.rb/tree/master/examples/gan)
+- [Transfer learning](https://github.com/ankane/torch.rb/tree/master/examples/transfer-learning)
+- [Generative adversarial networks](https://github.com/ankane/torch.rb/tree/master/examples/gan)
 
 ## Datasets
 
