@@ -3,7 +3,7 @@ module TorchVision
     class RandomResizedCrop < Torch::NN::Module
       def initialize(size, scale: [0.08, 1.0], ratio: [3.0 / 4.0, 4.0 / 3.0])
         super()
-        @size = size
+        @size = setup_size(size, "Please provide only two dimensions (h, w) for size.")
         # @interpolation = interpolation
         @scale = scale
         @ratio = ratio
@@ -50,6 +50,20 @@ module TorchVision
       def forward(img)
         i, j, h, w = params(img, @scale, @ratio)
         F.resized_crop(img, i, j, h, w, @size) #, @interpolation)
+      end
+
+      private
+
+      def setup_size(size, error_msg)
+        if size.is_a?(Integer)
+          return [size, size]
+        end
+
+        if size.length != 2
+          raise ArgumentError, error_msg
+        end
+
+        size
       end
     end
   end

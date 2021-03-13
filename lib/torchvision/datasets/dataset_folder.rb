@@ -15,13 +15,32 @@ module TorchVision
           raise RuntimeError, msg
         end
 
-        # @loader = loader
+        @loader = lambda do |path|
+          Vips::Image.new_from_file(path)
+        end
         @extensions = extensions
 
         @classes = classes
         @class_to_idx = class_to_idx
         @samples = samples
         @targets = samples.map { |s| s[1] }
+      end
+
+      def [](index)
+        path, target = @samples[index]
+        sample = @loader.call(path)
+        if @transform
+          sample = @transform.call(sample)
+        end
+        if @target_transform
+          target = @target_transform.call(target)
+        end
+
+        [sample, target]
+      end
+
+      def size
+        @samples.size
       end
 
       private
