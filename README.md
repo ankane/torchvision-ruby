@@ -55,11 +55,11 @@ TorchVision::Transforms::Compose.new([
 
 Supported transforms are:
 
-- CenterCrop [master]
+- CenterCrop
 - Compose
 - Normalize
 - RandomHorizontalFlip
-- RandomResizedCrop [master]
+- RandomResizedCrop
 - RandomVerticalFlip
 - Resize
 - ToTensor
