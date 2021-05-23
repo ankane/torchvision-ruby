@@ -5,7 +5,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     env:
-      BUNDLE_BUILD__TORCH-RB: "--with-torch-dir=/home/runner/libtorch"
+      BUNDLE_BUILD__TORCH___RB: "--with-torch-dir=/home/runner/libtorch"
       LIBTORCH_VERSION: 1.8.1
     steps:
     - uses: actions/checkout@v2
