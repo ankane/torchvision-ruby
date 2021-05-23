@@ -1,3 +1,7 @@
+## 0.2.2 (unreleased)
+
+- Fixed error with ruby-vips 2.1.2
+
 ## 0.2.1 (2021-03-14)
 
 - Added `ImageFolder` and `DatasetFolder`

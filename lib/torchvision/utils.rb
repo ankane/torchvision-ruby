@@ -97,7 +97,7 @@ module TorchVision
           width, height = array.shape
           bands = array.shape[2] || 1
           data = FFI::Pointer.new(:uint8, array._data_ptr)
-          data.define_singleton_method(:bytesize) do
+          data.define_singleton_method(:size) do
             array.numel * array.element_size
           end
 
