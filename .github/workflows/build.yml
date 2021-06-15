@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUNDLE_BUILD__TORCH___RB: "--with-torch-dir=/home/runner/libtorch"
-      LIBTORCH_VERSION: 1.8.1
+      LIBTORCH_VERSION: 1.9.0
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
