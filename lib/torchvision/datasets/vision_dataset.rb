@@ -37,7 +37,7 @@ module TorchVision
         # of response bodies and automatically decompresses gzip
         # and deflateresponses unless a Range header was sent.
         # https://ruby-doc.org/stdlib-2.6.4/libdoc/net/http/rdoc/Net/HTTP.html
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
+        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: 3) do |http|
           request = Net::HTTP::Get.new(uri)
 
           puts "Downloading #{url}..."
