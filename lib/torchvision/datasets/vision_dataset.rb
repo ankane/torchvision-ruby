@@ -43,6 +43,7 @@ module TorchVision
           puts "Downloading #{url}..."
           File.open(temp_path, "wb") do |f|
             http.request(request) do |response|
+              response.value # raise error if not success
               response.read_body do |chunk|
                 f.write(chunk)
               end

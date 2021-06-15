@@ -52,8 +52,18 @@ module TorchVision
         FileUtils.mkdir_p(processed_folder)
 
         resources.each do |resource|
-          filename = resource[:url].split("/").last
-          download_file(resource[:url], download_root: raw_folder, filename: filename, sha256: resource[:sha256])
+          success = false
+          mirrors.each do |mirror|
+            begin
+              url = "#{mirror}#{resource[:filename]}"
+              download_file(url, download_root: raw_folder, filename: resource[:filename], sha256: resource[:sha256])
+              success = true
+              break
+            rescue Net::HTTPFatalError => e
+              puts "Failed to download (trying next): #{e.message}"
+            end
+          end
+          raise Error, "Error downloading #{resource[:filename]}" unless success
         end
 
         puts "Processing..."
@@ -75,22 +85,29 @@ module TorchVision
 
       private
 
+      def mirrors
+        [
+          "http://yann.lecun.com/exdb/mnist/",
+          "https://ossci-datasets.s3.amazonaws.com/mnist/"
+        ]
+      end
+
       def resources
         [
           {
-            url: "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
+            filename: "train-images-idx3-ubyte.gz",
             sha256: "440fcabf73cc546fa21475e81ea370265605f56be210a4024d2ca8f203523609"
           },
           {
-            url: "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz",
+            filename: "train-labels-idx1-ubyte.gz",
             sha256: "3552534a0a558bbed6aed32b30c495cca23d567ec52cac8be1a0730e8010255c"
           },
           {
-            url: "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
+            filename: "t10k-images-idx3-ubyte.gz",
             sha256: "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6"
           },
           {
-            url: "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",
+            filename: "t10k-labels-idx1-ubyte.gz",
             sha256: "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6"
           }
         ]
