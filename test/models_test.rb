@@ -50,6 +50,14 @@ class ModelsTest < Minitest::Test
     assert_equal 467, net.parameters.size
   end
 
+  # https://github.com/pytorch/pytorch/issues/42651
+  def test_resnet_pretrained
+    error = assert_raises do
+      TorchVision::Models::ResNet18.new(pretrained: true)
+    end
+    assert_match "please report a bug to PyTorch", error.message
+  end
+
   def test_resnext50_32x4d
     net = TorchVision::Models::ResNext50_32x4d.new
     assert_equal 151, net.modules.size
