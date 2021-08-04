@@ -42,6 +42,8 @@ module TorchVision
       def size
         @samples.size
       end
+      alias_method :count, :size
+      alias_method :length, :size
 
       private
 
