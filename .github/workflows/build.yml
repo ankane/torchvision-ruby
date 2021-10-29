@@ -2,11 +2,10 @@ name: build
 on: [push, pull_request]
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     env:
       BUNDLE_BUILD__TORCH___RB: "--with-torch-dir=/home/runner/libtorch"
-      LIBTORCH_VERSION: 1.9.0
+      LIBTORCH_VERSION: 1.10.0
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
