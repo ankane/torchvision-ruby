@@ -1,8 +1,8 @@
-# TorchVision
+# TorchVision Ruby
 
 :fire: Computer vision datasets, transforms, and models for Ruby
 
-[![Build Status](https://github.com/ankane/torchvision/workflows/build/badge.svg?branch=master)](https://github.com/ankane/torchvision/actions)
+[![Build Status](https://github.com/ankane/torchvision-ruby/workflows/build/badge.svg?branch=master)](https://github.com/ankane/torchvision-ruby/actions)
 
 ## Installation
 
@@ -161,22 +161,22 @@ If you’re a dataset owner and wish to update any details or remove it from thi
 
 ## History
 
-View the [changelog](https://github.com/ankane/torchvision/blob/master/CHANGELOG.md)
+View the [changelog](https://github.com/ankane/torchvision-ruby/blob/master/CHANGELOG.md)
 
 ## Contributing
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-- [Report bugs](https://github.com/ankane/torchvision/issues)
-- Fix bugs and [submit pull requests](https://github.com/ankane/torchvision/pulls)
+- [Report bugs](https://github.com/ankane/torchvision-ruby/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/torchvision-ruby/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
 To get started with development:
 
 ```sh
-git clone https://github.com/ankane/torchvision.git
-cd torchvision
+git clone https://github.com/ankane/torchvision-ruby.git
+cd torchvision-ruby
 bundle install
 bundle exec rake test
 ```

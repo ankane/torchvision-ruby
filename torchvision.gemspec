@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = "torchvision"
   spec.version       = TorchVision::VERSION
   spec.summary       = "Computer vision datasets, transforms, and models for Ruby"
-  spec.homepage      = "https://github.com/ankane/torchvision"
+  spec.homepage      = "https://github.com/ankane/torchvision-ruby"
   spec.license       = "BSD-3-Clause"
 
   spec.author        = "Andrew Kane"
