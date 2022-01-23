@@ -15,7 +15,7 @@ brew install vips
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'torchvision'
+gem "torchvision"
 ```
 
 ## Getting Started
