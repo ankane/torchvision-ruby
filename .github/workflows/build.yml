@@ -5,13 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUNDLE_BUILD__TORCH___RB: "--with-torch-dir=/home/runner/libtorch"
-      LIBTORCH_VERSION: 1.10.1
+      LIBTORCH_VERSION: 1.11.0
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
         path: ~/libtorch
-        key: libtorch-${{ env.LIBTORCH_VERSION }}-v2
+        key: libtorch-${{ env.LIBTORCH_VERSION }}
       id: cache-libtorch
     - name: Download LibTorch
       if: steps.cache-libtorch.outputs.cache-hit != 'true'
