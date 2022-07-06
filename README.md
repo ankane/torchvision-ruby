@@ -20,7 +20,7 @@ gem "torchvision"
 
 ## Getting Started
 
-This library follows the [Python API](https://pytorch.org/docs/stable/torchvision/index.html). Many methods and options are missing at the moment. PRs welcome!
+This library follows the [Python API](https://pytorch.org/vision/stable/index.html). Many methods and options are missing at the moment. PRs welcome!
 
 ## Examples
 
