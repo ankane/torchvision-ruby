@@ -1,6 +1,7 @@
-## 0.2.3 (unreleased)
+## 0.3.0 (unreleased)
 
 - Added mirror for MNIST dataset
+- Dropped support for Ruby < 2.7
 
 ## 0.2.2 (2021-05-23)
 
