@@ -1,7 +1,7 @@
 BSD 3-Clause License
 
 Copyright (c) Soumith Chintala 2016,
-Copyright (c) Andrew Kane 2020-2022,
+Copyright (c) Andrew Kane 2020-2023,
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
