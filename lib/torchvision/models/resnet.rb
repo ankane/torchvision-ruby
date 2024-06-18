@@ -13,7 +13,7 @@ module TorchVision
         "wide_resnet101_2" => "https://download.pytorch.org/models/wide_resnet101_2-32ee1156.pth"
       }
 
-      def initialize(block, layers, num_classes=1000, zero_init_residual: false,
+      def initialize(block, layers, num_classes = 1000, zero_init_residual: false,
         groups: 1, width_per_group: 64, replace_stride_with_dilation: nil, norm_layer: nil)
 
         super()
