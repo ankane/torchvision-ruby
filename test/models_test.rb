@@ -19,7 +19,7 @@ class ModelsTest < Minitest::Test
 
     net = TorchVision::Models::ResNet18.new
     assert_equal 68, net.modules.size
-    assert net.named_modules.keys.include?("layer2.0.downsample.0")
+    assert net.named_modules.key?("layer2.0.downsample.0")
     trainloader.each do |data, target|
       net.call(data)
       break
