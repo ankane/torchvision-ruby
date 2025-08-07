@@ -1,6 +1,6 @@
 ## 0.4.1 (unreleased)
 
-- Fixed download for MNIST dataset
+- Fixed download for MNIST and KMNIST datasets
 
 ## 0.4.0 (2024-08-02)
 

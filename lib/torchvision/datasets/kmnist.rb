@@ -7,7 +7,7 @@ module TorchVision
 
       def mirrors
         [
-          "http://codh.rois.ac.jp/kmnist/dataset/kmnist/"
+          "https://codh.rois.ac.jp/kmnist/dataset/kmnist/"
         ]
       end
 
