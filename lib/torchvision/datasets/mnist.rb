@@ -59,7 +59,7 @@ module TorchVision
               download_file(url, download_root: raw_folder, filename: resource[:filename], sha256: resource[:sha256])
               success = true
               break
-            rescue Net::HTTPFatalError, Net::HTTPClientException => e
+            rescue Errno::ECONNREFUSED, Net::HTTPFatalError, Net::HTTPClientException => e
               puts "Failed to download (trying next): #{e.message}"
             end
           end
@@ -87,8 +87,8 @@ module TorchVision
 
       def mirrors
         [
-          "https://yann.lecun.com/exdb/mnist/",
-          "https://ossci-datasets.s3.amazonaws.com/mnist/"
+          "https://ossci-datasets.s3.amazonaws.com/mnist/",
+          "https://yann.lecun.com/exdb/mnist/"
         ]
       end
 

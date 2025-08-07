@@ -1,3 +1,7 @@
+## 0.4.1 (unreleased)
+
+- Fixed download for MNIST dataset
+
 ## 0.4.0 (2024-08-02)
 
 - Dropped support for Ruby < 3.1
