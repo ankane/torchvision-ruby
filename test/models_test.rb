@@ -55,7 +55,7 @@ class ModelsTest < Minitest::Test
     error = assert_raises do
       TorchVision::Models::ResNet18.new(pretrained: true)
     end
-    assert_match "Unpickler found unknown type", error.message
+    assert_match "isGenericDict() INTERNAL ASSERT FAILED", error.message
   end
 
   def test_resnext50_32x4d
