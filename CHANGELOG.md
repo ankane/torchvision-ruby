@@ -1,3 +1,7 @@
+## 0.5.0 (unreleased)
+
+- Dropped support for Ruby < 3.3
+
 ## 0.4.1 (2025-08-07)
 
 - Fixed download for MNIST and KMNIST datasets
