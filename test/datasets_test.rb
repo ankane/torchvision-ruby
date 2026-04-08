@@ -36,6 +36,9 @@ class DatasetsTest < Minitest::Test
   end
 
   def test_kmnist
+    # https://github.com/rois-codh/kmnist/issues/29
+    skip "broken url"
+
     trainset = TorchVision::Datasets::KMNIST.new(root, train: true, download: true)
     assert_equal 60000, trainset.size
     assert_kind_of Vips::Image, trainset[0][0]
