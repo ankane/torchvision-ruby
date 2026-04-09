@@ -29,33 +29,24 @@ module TorchVision
         dest = File.join(download_root, filename)
         return dest if File.exist?(dest)
 
-        temp_path = "#{Dir.tmpdir}/#{Time.now.to_f}" # TODO better name
+        uri = URI.parse(url)
+        raise "Invalid URL" unless uri.is_a?(URI::HTTP) # includes https
 
-        uri = URI(url)
-
-        # Net::HTTP automatically adds Accept-Encoding for compression
-        # of response bodies and automatically decompresses gzip
-        # and deflateresponses unless a Range header was sent.
-        # https://ruby-doc.org/stdlib-2.6.4/libdoc/net/http/rdoc/Net/HTTP.html
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: 3) do |http|
-          request = Net::HTTP::Get.new(uri)
-
-          puts "Downloading #{url}..."
-          File.open(temp_path, "wb") do |f|
-            http.request(request) do |response|
-              response.value # raise error if not success
-              response.read_body do |chunk|
-                f.write(chunk)
-              end
+        uri.open(open_timeout: 3, redirect: false) do |download|
+          digest =
+            if download.respond_to?(:path)
+              download.flush
+              Digest::SHA256.file(download.path).hexdigest
+            else
+              Digest::SHA256.hexdigest(download.string)
             end
+
+          if digest != sha256
+            raise Error, "Bad hash"
           end
-        end
 
-        unless check_integrity(temp_path, sha256)
-          raise Error, "Bad hash"
+          IO.copy_stream(download, dest.to_str)
         end
-
-        FileUtils.mv(temp_path, dest)
 
         dest
       end

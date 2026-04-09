@@ -59,7 +59,7 @@ module TorchVision
               download_file(url, download_root: raw_folder, filename: resource[:filename], sha256: resource[:sha256])
               success = true
               break
-            rescue Errno::ECONNREFUSED, Net::HTTPFatalError, Net::HTTPClientException => e
+            rescue Errno::ECONNREFUSED => e
               puts "Failed to download (trying next): #{e.message}"
             end
           end

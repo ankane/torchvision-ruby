@@ -6,7 +6,7 @@ require "torch"
 # stdlib
 require "digest"
 require "fileutils"
-require "net/http"
+require "open-uri"
 require "rubygems/package"
 require "tmpdir"
 
