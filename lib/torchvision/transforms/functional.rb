@@ -19,7 +19,7 @@ module TorchVision
           std = Torch.tensor(std, dtype: dtype, device: tensor.device)
 
           # TODO
-          if std.to_a.any? { |v| v == 0 }
+          if std.to_a.any?(0)
             raise ArgumentError, "std evaluated to zero after conversion to #{dtype}, leading to division by zero."
           end
           if mean.ndim == 1
