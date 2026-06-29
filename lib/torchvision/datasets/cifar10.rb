@@ -1,7 +1,7 @@
 module TorchVision
   module Datasets
     class CIFAR10 < VisionDataset
-      # https://www.cs.toronto.edu/~kriz/cifar.html
+      # https://cave.cs.toronto.edu/kriz/cifar.html
 
       def initialize(root, train: true, download: false, transform: nil, target_transform: nil)
         super(root, transform: transform, target_transform: target_transform)
@@ -82,7 +82,7 @@ module TorchVision
       end
 
       def url
-        "https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz"
+        "https://cave.cs.toronto.edu/kriz/cifar-10-binary.tar.gz"
       end
 
       def filename

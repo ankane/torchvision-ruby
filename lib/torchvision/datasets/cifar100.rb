@@ -1,7 +1,7 @@
 module TorchVision
   module Datasets
     class CIFAR100 < CIFAR10
-      # https://www.cs.toronto.edu/~kriz/cifar.html
+      # https://cave.cs.toronto.edu/kriz/cifar.html
 
       private
 
@@ -10,7 +10,7 @@ module TorchVision
       end
 
       def url
-        "https://www.cs.toronto.edu/~kriz/cifar-100-binary.tar.gz"
+        "https://cave.cs.toronto.edu/kriz/cifar-100-binary.tar.gz"
       end
 
       def filename

@@ -1,3 +1,7 @@
+## 0.5.1 (unreleased)
+
+- Fixed download for CIFAR datasets
+
 ## 0.5.0 (2026-04-07)
 
 - Switched to `numo-narray-alt`

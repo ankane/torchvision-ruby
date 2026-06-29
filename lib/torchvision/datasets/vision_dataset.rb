@@ -32,7 +32,7 @@ module TorchVision
         uri = URI.parse(url)
         raise "Invalid URL" unless uri.is_a?(URI::HTTP) # includes https
 
-        uri.open(open_timeout: 3, max_redirects: 3) do |download|
+        uri.open(open_timeout: 3, redirect: false) do |download|
           digest =
             if download.respond_to?(:path)
               download.flush
